@@ -1,29 +1,21 @@
 {
-  "name": "fullstack-app",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "mongoose": "^5.4.13",
-    "morgan": "^1.9.1",
-    "nodemon": "^1.18.10",
-    "react": "^16.8.2",
-    "react-dom": "^16.8.2",
-    "react-scripts": "2.1.5"
+  "name": "mern-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/pmo1998/fullstack-mern-app.git"
   },
+  "author": "Leyla <lisana5632@gmail.com>",
+  "license": "MIT",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "watch": "nodemon ./backend/start.js"
+    "start": "concurrently \"cd backend && nodejs start.js\" \"cd client && yarn start\""
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "dependencies": {
+    "concurrently": "^4.1.0"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "bugs": {
+    "url": "https://github.com/pmo1998/fullstack-mern-app/issues"
+  },
+  "homepage": "https://github.com/pmo1998/fullstack-mern-app#readme"
 }
