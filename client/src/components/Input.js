@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import PropTypes from 'prop-types';
 class Input extends Component {
   constructor(props) {
     super();
@@ -28,4 +28,12 @@ class Input extends Component {
   )};
 
 };
+
+Input.propTypes={
+    name:PropTypes.string,
+    type:PropTypes.string,
+    placeholder:PropTypes.string,
+    onChange:PropTypes.func,
+  }
+
 export default Input;
