@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
+import {Form } from 'react-bootstrap';
+
 class Input extends Component {
   constructor(props) {
     super();
@@ -8,23 +10,33 @@ class Input extends Component {
       value:''
     };
     this.props=props;
+
   }
+    
   onChange = (e) => {
       this.setState({name:e.target.name,value: e.target.value },
-                    ()=> this.props.setValues(this.state.name,this.state.value));
+                    ()=>this.props.setValues(this.state.name,this.state.value));
   }
+  
 
-  render() {
+  render() { 
     return (
-    <div className="Input">
-        <input  id={this.props.name}
-                name={this.props.name}
-                required type={this.props.type}
-                placeholder={this.props.placeholder}
-                onChange={this.onChange}
-                />
-              <label htmlFor={this.props.name}></label>
-    </div>
+    
+        <Form.Group>
+            <Form.Label
+                    htmlFor={this.props.name}>
+                    {this.props.name.charAt(0).toUpperCase() + this.props.name.slice(1)}
+            </Form.Label>
+            <Form.Control 
+                    as={this.props.as}
+                    id={this.props.name}
+                    name={this.props.name}
+                    rows={this.props.rows}
+                    required type={this.props.type}
+                    placeholder={this.props.placeholder}
+                    onChange={this.onChange}/>
+       </Form.Group>
+        
   )};
 
 };
@@ -32,8 +44,11 @@ class Input extends Component {
 Input.propTypes={
     name:PropTypes.string,
     type:PropTypes.string,
+    as:PropTypes.string,
+    rows:PropTypes.string,
     placeholder:PropTypes.string,
     onChange:PropTypes.func,
+    
   }
 
 export default Input;

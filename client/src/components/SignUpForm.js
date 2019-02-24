@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Input from './Input';
 import axios from 'axios';
-
 import { Redirect } from 'react-router';
+import { Form,Button } from 'react-bootstrap';
+import {styles} from './styles';
 
 class SignUpForm extends Component {
 
@@ -17,16 +18,19 @@ class SignUpForm extends Component {
 
  setValues=(name,value)=>{
     this.setState({[name]:value});
+     
  }
 
  onSubmit = (e) => {
      e.preventDefault();
      const { name, email } = this.state;
-     axios.post('http://127.0.0.1:3001',{name:name,email:email})
-       .then(res => {
+     axios
+     .post('http://127.0.0.1:3001',{name:name,email:email})
+     .then(res => {
+         console.log(res);
          if(res.data.redirectUrl.length) this.setState({redirect:true});
        })
-       .catch(err => console.log(err))
+     .catch(err => console.log(err.response.data));
    }
 
   render() {
@@ -34,28 +38,28 @@ class SignUpForm extends Component {
       return <Redirect to='/blog-post'/>
     }
     return (
-      <div className="sign-up-form-container">
+       
+        <Form onSubmit={this.onSubmit} style={styles.Form}>   
+            <Input 
+                   as='input'
+                   name='name'
+                   type='text'
+                   placeholder='Enter a name'
+                   setValues={this.setValues.bind(this)}/>
 
-            <form  className="sign-up-form" onSubmit={this.onSubmit}>
+            <Input
+                   as='input'
+                   name='name'
+                   type='text'
+                   placeholder='Enter an email'
+                   setValues={this.setValues.bind(this)}
+                 />
+            <Button 
+                   style={styles.Button}
+                   variant='dark'
+                   type='submit'>Sign Up</Button>
+       </Form>
 
-                <Input
-                       name="name"
-                       type="text"
-                       placeholder="Enter a name"
-                       setValues={this.setValues.bind(this)}
-                       />
-
-                <Input
-                       name="email"
-                       type="email"
-                       placeholder="Enter an email"
-                       setValues={this.setValues.bind(this)}
-                     />
-
-                <button>Sign Up</button>
-
-            </form>
-      </div>
     );
   }
 
