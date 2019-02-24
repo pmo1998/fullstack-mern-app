@@ -14,7 +14,7 @@ exports.validate=()=>{
 
 exports.createBlogPost=(req,res,next) => {
     const result = validationResult(req);
-    console.log(result);
+    console.log(result.isEmpty());
     if (result.isEmpty()) {
       const data = new Data(req.body);
       data
@@ -22,7 +22,7 @@ exports.createBlogPost=(req,res,next) => {
       .then(() => {
             return res.status(200).json({
                     success:true,
-                    message:"Your post saved!",
+                    message:'Your post saved!',
             });
       })
       .catch(next);

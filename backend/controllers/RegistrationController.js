@@ -17,7 +17,8 @@ exports.createRegistration=(req,res,next)=>{
     const result = validationResult(req);
     if (result.isEmpty()) {
       const registration = new Registration(req.body);
-      registration.save()
+      registration
+      .save()
       .then(() => {
             return res.status(200).json({
             success:true,
