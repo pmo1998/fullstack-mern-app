@@ -13,6 +13,7 @@ class SignUpForm extends Component {
       name: '',
       email: '',
       redirect:false,
+      error:''
     };
   }
 
@@ -30,7 +31,7 @@ class SignUpForm extends Component {
          console.log(res);
          if(res.data.redirectUrl.length) this.setState({redirect:true});
        })
-     .catch(err => console.log(err.response.data));
+     .catch(err => this.setState({error: err.response.data.error}));
    }
 
   render() {
@@ -54,6 +55,9 @@ class SignUpForm extends Component {
                    placeholder='Enter an email'
                    setValues={this.setValues.bind(this)}
                  />
+             <Form.Text >
+               {this.state.error}
+            </Form.Text>
             <Button 
                    style={styles.Button}
                    variant='dark'

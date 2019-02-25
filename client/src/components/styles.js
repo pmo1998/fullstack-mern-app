@@ -8,9 +8,14 @@ const Button = {
     width:'150px'
 };
 
+const ErrorMsg = {
+    color:'#A31414',
+    paddingBottom:'15px'
+};
 
  export const styles = {
   Form: Form,
-  Button: Button
+  Button: Button,
+  ErrorMsg:ErrorMsg
 };
  

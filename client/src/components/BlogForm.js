@@ -11,6 +11,7 @@ class BlogForm extends Component {
     this.state = {
       title: '',
       text: '',
+      error:''
     };
   }
 
@@ -24,7 +25,7 @@ class BlogForm extends Component {
       axios
       .post('http://127.0.0.1:3001/blog-post',{title:title,text:text})
       .then(res => console.log(res))
-      .catch(err => console.log(err.response.data));
+      .catch(err => this.setState({error: err.response.data.error}));
     }
 
   render() {
@@ -44,6 +45,10 @@ class BlogForm extends Component {
                  type='text'
                  placeholder='Enter a title'
                  setValues={this.setValues.bind(this)}/>
+                 
+            <Form.Text style={styles.ErrorMsg}>
+               {this.state.error}
+            </Form.Text>  
                  
             <Button 
                  style={styles.Button}
