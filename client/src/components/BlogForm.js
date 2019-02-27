@@ -33,7 +33,7 @@ class BlogForm extends Component {
         <Form onSubmit={this.onSubmit} style={styles.Form}>
             <Input
                   as='input'
-                  name='name'
+                  name='title'
                   type='text'
                   placeholder='Enter a title'
                   setValues={this.setValues.bind(this)}/>
@@ -43,7 +43,7 @@ class BlogForm extends Component {
                  rows='6'
                  name='text'
                  type='text'
-                 placeholder='Enter a title'
+                 placeholder='Enter text'
                  setValues={this.setValues.bind(this)}/>
                  
             <Form.Text style={styles.ErrorMsg}>

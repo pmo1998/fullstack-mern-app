@@ -14,8 +14,8 @@ exports.validate=()=>{
 
 exports.createBlogPost=(req,res,next) => {
     const result = validationResult(req);
-    console.log(result.isEmpty());
     if (result.isEmpty()) {
+      console.log(req.body);
       const data = new Data(req.body);
       data
       .save()
@@ -27,6 +27,10 @@ exports.createBlogPost=(req,res,next) => {
       })
       .catch(next);
     }
-    else next(new Error('Invalid inputs.'));
+    else{
+        let errors=result.mapped(), error_msg='';
+        for(let key in errors) error_msg+=`${errors[key].msg}\n`;
+        next(new Error(error_msg));
+    }
 }
     

@@ -50,12 +50,12 @@ class SignUpForm extends Component {
 
             <Input
                    as='input'
-                   name='name'
+                   name='email'
                    type='text'
                    placeholder='Enter an email'
                    setValues={this.setValues.bind(this)}
                  />
-             <Form.Text >
+             <Form.Text  style={styles.ErrorMsg} >
                {this.state.error}
             </Form.Text>
             <Button 
