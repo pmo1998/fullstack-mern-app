@@ -24,7 +24,7 @@ class BlogForm extends Component {
       const { title, text } = this.state;
       axios
       .post('http://127.0.0.1:3001/blog-post',{title:title,text:text})
-      .then(res => console.log(res))
+      .then(res => window.location = '/')
       .catch(err => this.setState({error: err.response.data.error}));
     }
 

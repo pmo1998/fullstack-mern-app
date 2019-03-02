@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Input from './Input';
 import axios from 'axios';
-import { Redirect } from 'react-router';
 import { Form,Button } from 'react-bootstrap';
 import {styles} from './styles';
 
@@ -12,7 +11,6 @@ class SignUpForm extends Component {
     this.state = {
       name: '',
       email: '',
-      redirect:false,
       error:''
     };
   }
@@ -26,20 +24,14 @@ class SignUpForm extends Component {
      e.preventDefault();
      const { name, email } = this.state;
      axios
-     .post('http://127.0.0.1:3001',{name:name,email:email})
-     .then(res => {
-         console.log(res);
-         if(res.data.redirectUrl.length) this.setState({redirect:true});
-       })
-     .catch(err => this.setState({error: err.response.data.error}));
+     .post('http://127.0.0.1:3001/sign-up',{name:name,email:email})
+     .then(res => window.location = '/')
+     .catch(err =>this.setState({error:err.response.data.error}));
    }
 
   render() {
-    if(this.state.redirect===true) {
-      return <Redirect to='/blog-post'/>
-    }
+
     return (
-       
         <Form onSubmit={this.onSubmit} style={styles.Form}>   
             <Input 
                    as='input'
@@ -55,9 +47,11 @@ class SignUpForm extends Component {
                    placeholder='Enter an email'
                    setValues={this.setValues.bind(this)}
                  />
+                 
              <Form.Text  style={styles.ErrorMsg} >
                {this.state.error}
             </Form.Text>
+             
             <Button 
                    style={styles.Button}
                    variant='dark'
