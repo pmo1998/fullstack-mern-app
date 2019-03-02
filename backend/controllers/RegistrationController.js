@@ -27,7 +27,7 @@ exports.createRegistration=(req,res,next)=>{
     }
     else {
         let errors=result.mapped(), error_msg='';
-        for(let key in errors) error_msg+=`${errors[key].msg}`;
+        for(let key in errors) error_msg+=`${errors[key].msg} `;
         next(new Error(error_msg)); 
     }
     
