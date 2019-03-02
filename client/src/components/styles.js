@@ -1,10 +1,10 @@
 const Form={
-    backgroundColor:"#547EBB",
-    padding:'25px',
-    borderRadius:'5px',
-    width:'65%',
+    backgroundColor:'rgba(206,202,202, 0.55)',
+    padding:'35px',
+    borderRadius:'10px',
+    width:'60%',
     margin:'auto'
-};
+}
 
 const Button = {
     width:'150px'
@@ -18,14 +18,33 @@ const ErrorMsg = {
 
 const BlogPost ={
     padding:'30px',
-    backgroundColor:'rgb(210, 215, 217 )',
     borderBottom:'solid 2px rgba(150, 154, 155, 0.75)'
 };
 
+const NavRow ={
+    borderBottom:'solid 1px #CECACA'
+};
+
+const Nav= {
+    flexDirection:'row-reverse',
+};
+
+const LinkContainer= {
+    cursor:'pointer',
+    color:'blue',
+    margin:'0 40px 0 0'
+};
+const Main ={
+    margin:'50px'
+}
  export const styles = {
   Form: Form,
   Button: Button,
   ErrorMsg:ErrorMsg,
-  BlogPost:BlogPost
+  BlogPost:BlogPost,
+  NavRow:NavRow, 
+  Nav:Nav, 
+  LinkContainer:LinkContainer,
+  Main:Main
 };
  
