@@ -1,32 +1,19 @@
 import React, { Component } from 'react';
-import SignUpForm from './components/SignUpForm';
-import BlogForm from './components/BlogForm';
-import AllBlogPosts from './components/AllBlogPosts';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import {Container,Row,Col } from 'react-bootstrap';
+import { BrowserRouter as Router} from "react-router-dom";
+import {Container} from 'react-bootstrap';
+import Navigation from './components/Navigation';
+import Main from './components/Main';
 
 class App extends Component {
-
-
   render() {
-    return (
-        <Router>
-          <Container style={{marginTop:'50px'}}>
-          <Row>
-            <Col sm='2'></Col>
-            <Col sm='8'>
-              <Route exact path='/'
-                     render={() => <SignUpForm/>}/>
-               <Route path='/blog-post'
-                  render={() => <BlogForm/>}/>
-               <Route path='/blog-posts'
-                  render={() => <AllBlogPosts/>}/>
-            </Col>
-            <Col sm='2'></Col> 
-            </Row>
+      return (
+      <Router>
+          <Container>
+                <Navigation/>
+                <Main/>
           </Container>
-        </Router>
-    );
+      </Router> 
+     );
   }
 }
 
