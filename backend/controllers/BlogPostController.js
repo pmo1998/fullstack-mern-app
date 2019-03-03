@@ -15,7 +15,6 @@ exports.validate=()=>{
 exports.createBlogPost=(req,res,next) => {
     const result = validationResult(req);
     if (result.isEmpty()) {
-      console.log(req.body);
       const data = new Data(req.body);
       data
       .save()
