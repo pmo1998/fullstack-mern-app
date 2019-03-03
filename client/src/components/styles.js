@@ -6,6 +6,11 @@ const Form={
     margin:'auto'
 }
 
+const EditForm= {
+    width:'100%',
+    padding:'30px'
+};
+
 const Button = {
     width:'150px'
 };
@@ -39,6 +44,7 @@ const Main ={
 }
  export const styles = {
   Form: Form,
+  EditForm:EditForm,
   Button: Button,
   ErrorMsg:ErrorMsg,
   BlogPost:BlogPost,
