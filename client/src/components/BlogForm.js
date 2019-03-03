@@ -3,16 +3,19 @@ import Input from './Input';
 import axios from 'axios';
 import {Form,Button } from 'react-bootstrap';
 import {styles} from './styles';
+import PropTypes from 'prop-types';
+
 
 class BlogForm extends Component {
 
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       title: '',
       text: '',
       error:''
     };
+    this.props=props;
   }
 
   setValues=(name,value)=>{
@@ -22,19 +25,35 @@ class BlogForm extends Component {
   onSubmit = (e) => {
       e.preventDefault();
       const { title, text } = this.state;
-      axios
-      .post('http://127.0.0.1:3001/blog-post',{title:title,text:text})
-      .then(res => window.location = '/')
-      .catch(err => this.setState({error: err.response.data.error}));
+      if(this.props.for_==='add') {
+          axios
+          .post('http://127.0.0.1:3001/blog-post',{title:title,text:text})
+          .then(res => window.location = '/')
+          .catch(err => this.setState({error: err.response.data.error}));
+      }
+      else if(this.props.for_==='edit') {
+          axios
+          .post('http://127.0.0.1:3001/update-blog-post',{
+              id:this.props.id,
+              updated:{
+                  title:title,text:text
+              }
+          })
+          .then(res => window.location = '/')
+          .catch(err => this.setState({error: err.response.data.error}));
+      }
     }
 
   render() {
+    let formStyle=styles.Form;
+    if(this.props.for_==='edit') formStyle =styles.EditForm;
     return (  
-        <Form onSubmit={this.onSubmit} style={styles.Form}>
+        <Form onSubmit={this.onSubmit} style={formStyle}>
             <Input
                   as='input'
                   name='title'
                   type='text'
+                  value={this.props.title}
                   placeholder='Enter a title'
                   setValues={this.setValues.bind(this)}/>
 
@@ -43,6 +62,7 @@ class BlogForm extends Component {
                  rows='6'
                  name='text'
                  type='text'
+                 value={this.props.text}
                  placeholder='Enter text'
                  setValues={this.setValues.bind(this)}/>
                  
@@ -53,11 +73,18 @@ class BlogForm extends Component {
             <Button 
                  style={styles.Button}
                  variant='dark'
-                 type='submit'>Post</Button>
+                 type='submit'>{this.props.btnName}</Button>
        </Form>
     );
   }
 };
 
+BlogForm.propTypes={
+    id:PropTypes.string,
+    for_:PropTypes.string,
+    title:PropTypes.string,
+    text:PropTypes.string,
+    btnName:PropTypes.string
+}
 
 export default BlogForm;
