@@ -16,7 +16,7 @@ class AllBlogPosts  extends React.Component {
       .then(res => this.setState({posts:res.data.posts}))
       .catch(err => this.setState({errors:err.data.error}));
      }
-    
+
     render() {
       const posts=this.state.posts.slice(0);
       if(this.state.posts.length===0) {
@@ -33,10 +33,11 @@ class AllBlogPosts  extends React.Component {
               {posts.map((post,index)=>{
                return (
                    <BlogPost
+                        id={posts[posts.length-1-index]._id}
                         key= {posts[posts.length-1-index]._id} 
                         title={posts[posts.length-1-index].title} 
-                        text={posts[posts.length-1-index].text}/>)
-            })}
+                        text={posts[posts.length-1-index].text}/>
+                )})}
           </section>
       );}
     
