@@ -1,15 +1,12 @@
 const path = require('path');
 const express = require('express');
 const router = express.Router();
+const controllers=require('../controllers/controllers');
 
-
-const RegistrationController=require('../controllers/RegistrationController');
-const BlogPostController=require('../controllers/BlogPostController');
-const AllBlogPostsController=require('../controllers/AllBlogPostsController');
-
-router.get('/', AllBlogPostsController.show);
-router.post('/sign-up',RegistrationController.validate(),RegistrationController.createRegistration);
-router.post('/blog-post', BlogPostController.validate(),BlogPostController.createBlogPost);
-
+router.get('/', controllers.show);
+router.post('/sign-up',controllers.registrationValidate(),controllers.createRegistration);
+router.post('/blog-post', controllers.blogPostValidate(),controllers.createBlogPost);
+router.post('/update-blog-post', controllers.updateBlogPost);
+router.delete('/delele-blog-post', controllers.deleteBlogPost);
 
 module.exports = router;
