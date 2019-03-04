@@ -3,7 +3,7 @@ import {styles} from './styles';
 import {Container } from 'react-bootstrap';
 import BlogForm from './BlogForm';
 import BlogPostMethods from './BlogPostMethods';
-import axios from 'axios';
+import {deletePost} from '../actions'
 
 class BlogPost  extends React.Component { 
     
@@ -20,17 +20,13 @@ class BlogPost  extends React.Component {
     }
     
    onClickDelete=() => {
-      axios
-      .delete('http://127.0.0.1:3001/delele-blog-post', {
-          data:
-            {id:this.props.id}
-      })
+      deletePost(this.props.id)
       .then(res => window.location = '/')
-      .catch(err => alert(err));
-      
+      .catch(err => alert(err)); 
     }
     
   render() {
+      
     if(this.state.isEditing) {
          return (
             <BlogForm 
@@ -41,6 +37,7 @@ class BlogPost  extends React.Component {
                        btnName='Update'/>
         );
     }
+      
     else {
         return (
         <Container  style={styles.BlogPost}>

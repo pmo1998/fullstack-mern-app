@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Input from './Input';
-import axios from 'axios';
+import {addPost,updatePost} from '../actions'
 import {Form,Button } from 'react-bootstrap';
 import {styles} from './styles';
 import PropTypes from 'prop-types';
@@ -26,19 +26,12 @@ class BlogForm extends Component {
       e.preventDefault();
       const { title, text } = this.state;
       if(this.props.for_==='add') {
-          axios
-          .post('http://127.0.0.1:3001/blog-post',{title:title,text:text})
+           addPost(title,text)
           .then(res => window.location = '/')
           .catch(err => this.setState({error: err.response.data.error}));
       }
       else if(this.props.for_==='edit') {
-          axios
-          .post('http://127.0.0.1:3001/update-blog-post',{
-              id:this.props.id,
-              updated:{
-                  title:title,text:text
-              }
-          })
+          updatePost(this.props.id,title,text)
           .then(res => window.location = '/')
           .catch(err => this.setState({error: err.response.data.error}));
       }

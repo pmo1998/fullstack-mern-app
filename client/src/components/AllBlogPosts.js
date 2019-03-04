@@ -1,6 +1,7 @@
 import React from "react";
 import BlogPost from './BlogPost';
-import axios from 'axios';
+import {getAllPosts} from '../actions'
+
 
 class AllBlogPosts  extends React.Component { 
     constructor(props) {
@@ -10,9 +11,9 @@ class AllBlogPosts  extends React.Component {
             errors:null
         };
     }
-     componentDidMount(){
-      axios
-      .get('http://127.0.0.1:3001')
+    
+    componentDidMount(){
+      getAllPosts()
       .then(res => this.setState({posts:res.data.posts}))
       .catch(err => this.setState({errors:err.data.error}));
      }

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Input from './Input';
-import axios from 'axios';
 import { Form,Button } from 'react-bootstrap';
 import {styles} from './styles';
+import {createUser} from '../actions'
 
 class SignUpForm extends Component {
 
@@ -23,8 +23,7 @@ class SignUpForm extends Component {
  onSubmit = (e) => {
      e.preventDefault();
      const { name, email } = this.state;
-     axios
-     .post('http://127.0.0.1:3001/sign-up',{name:name,email:email})
+     createUser(name, email)
      .then(res => window.location = '/')
      .catch(err =>this.setState({error:err.response.data.error}));
    }
