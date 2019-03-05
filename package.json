@@ -9,7 +9,7 @@
   "author": "Leyla <lisana5632@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently \"cd backend && nodejs start.js\" \"cd client && yarn start\""
+    "start": "concurrently \"cd backend && yarn nodemon start.js\" \"cd client && yarn start\""
   },
   "dependencies": {
     "concurrently": "^4.1.0"
